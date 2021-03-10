@@ -1,7 +1,8 @@
-#
-#
-#
-
+##
+## Using MinGw 64-bit on Windows 10\
+## Visual Studio 2019
+## mingw-x64 toolchain installed.
+##
 
 BUILD_STEP=${1} # user input -c/-b
 
