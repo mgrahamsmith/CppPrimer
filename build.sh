@@ -1,10 +1,12 @@
-# Defaults
-SYSTEM="Windows"
-BUILD_GENERATOR="Ninja"
+#
+#
+#
 
-BUILD_DIR=_Build
 
 BUILD_STEP=${1} # user input -c/-b
+
+BUILD_DIR="_Build" # Set build output dir
+BUILD_GENERATOR="" # Set generator here (Default "Visual Studio 16 2019")
 
 SUCC_MSG="Temba, his arms wide!"
 FAIL_MSG="Shaka, when the walls fell."
@@ -22,7 +24,11 @@ if [ -z ${1} ]; then
 fi
 
 if [ ${BUILD_STEP} == "-c" ]; then
-    cmake -G ${BUILD_GENERATOR} -S . -B ${BUILD_DIR}
+    if [ -z ${BUILD_GENERATOR} ]; then
+        cmake -S . -B ${BUILD_DIR}
+    else
+        cmake -G ${BUILD_GENERATOR} -S . -B ${BUILD_DIR}
+    fi
     print_status
 
 elif [ ${BUILD_STEP} == "-b" ]; then
